@@ -18,9 +18,10 @@ const Navbar = () => {
 
     const navLinks=<>
     
-    <li><NavLink to="/home" >Home</NavLink></li>
+    <li><NavLink to="/" >Home</NavLink></li>
     <li><NavLink to="/login" >Login</NavLink></li>
     <li><NavLink to="/register" >Register</NavLink></li>
+    { user ? <li><NavLink to="/orders" >Orders</NavLink></li>:""}
     
     </>
 
@@ -60,8 +61,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end space-x-4">
-          <p className="font-semibold  bg-base-200 p-1 rounded">{user?.email}</p>
-          <a onClick={signOut} className="btn">Sign Out</a>
+            {user && <>
+            
+                <p className="font-semibold  bg-base-200 p-1 rounded">{user?.email}</p>
+
+                <a onClick={signOut} className="btn">Sign Out</a>
+
+            </>}
+          
+         
         </div>
       </div>
     </div>
