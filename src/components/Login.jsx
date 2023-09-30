@@ -1,10 +1,27 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProvider";
+
+
 
 const Login = () => {
+
+    const {handleSignIn}=useContext(AuthContext)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    // sigining in with a user
+    handleSignIn(email,password)
+    .then((result) => {
+        console.log(result.user)
+    })
+    .catch((error) => {
+        console.log(error.message)
+    })
+    
   };
 
   return (
@@ -52,7 +69,7 @@ const Login = () => {
               </form>
               <p>
                 New to this website ? Please{" "}
-                <Link to="/register" >
+                <Link to="/register">
                   <button className="btn p-0 btn-link">Register</button>
                 </Link>
               </p>
